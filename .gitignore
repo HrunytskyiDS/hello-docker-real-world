@@ -1,4 +1,8 @@
 **/node_modules
 **/.idea
-package-lock.json
-docker-compose.yml
+
+/api/node_modules
+
+/frontend/node_modules
+/frontend/build
+/frontend/frontend

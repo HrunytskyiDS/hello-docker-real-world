@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  api:
+    build:
+      context: api
+      dockerfile: Dockerfile
+    container_name: api
+    environment:
+      - PORT=3001
+      - HOST=localhost
+      - MONGO_URL=mongodb://api_db:27017/api
+    volumes:
+      - ./src:/usr/src/app/src/app
+    depends_on:
+      - api_db
+
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile.prod
+    container_name: frontend
+    stdin_open: true
+    tty: true
+    command: serve -s build -l 3000
+    restart: unless-stopped
+    environment:
+      - WATCHPACK_POLLING=true
+    volumes:
+      - './src:/usr/src/app/src'
+      - '/app/node_modules'
+
+  nginx:
+    image: nginx:1-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.prod.conf:/etc/nginx/conf.d/nginx.conf
+    depends_on:
+      - api
+      - frontend
+
+  api_db:
+    image: mongo:latest
+    volumes:
+      - mongodb_api:/data/db
+
+volumes:
+  mongodb_api:

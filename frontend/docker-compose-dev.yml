@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: npm start
+    stdin_open: true
+    tty: true
+    environment:
+      - WATCHPACK_POLLING=true
+    volumes:
+      - './src:/usr/src/app/src'
+      - '/app/node_modules'

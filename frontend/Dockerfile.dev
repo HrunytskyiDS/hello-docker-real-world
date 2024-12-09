@@ -1,0 +1,19 @@
+# Етап для режиму розробки
+FROM node:20-alpine3.17
+WORKDIR /usr/src/app
+
+# Копіюємо файли package.json
+COPY package*.json ./
+
+# Встановлюємо залежності
+RUN npm install
+
+RUN npm install nodemon -g
+
+# Копіюємо весь код
+COPY . .
+
+EXPOSE 3000
+
+# Запускаємо сервер для роботи в режимі розробки
+CMD ["npm", "start"]
