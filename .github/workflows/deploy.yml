@@ -20,9 +20,7 @@ jobs:
 
       - name: Deploy to Windows server
         run: |
-           ssh -i ssh_key -o StrictHostKeyChecking=no user@host `
-            "cd 'D:\5kurs\Архітектура, проєктування та безпека веб-орієнтованих інформаційних та комп'ютерних систем\HelloDockerRealWorld'; `
-            git pull origin main; `
-            docker-compose down; `
-            docker-compose up -d --build"
+           echo ${{secrets.SSH_PRIVATE_KEY}}
+           echo ${{secrets.SERVER_USER}}
+           echo ${{secrets.SERVER_IP}}
   
