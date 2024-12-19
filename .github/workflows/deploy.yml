@@ -23,9 +23,13 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "
             powershell -Command '
               cd "D:\Projects\HelloDockerRealWorld"
+              echo "CD ..."
               git pull origin main
+              echo "GIT PULL"
               docker-compose down
+              echo "DOWN"
               docker-compose up -d --build
+              echo "BUILD"
             '
           "
 
