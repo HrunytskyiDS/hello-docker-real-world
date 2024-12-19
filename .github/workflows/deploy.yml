@@ -20,7 +20,7 @@ jobs:
 
       - name: Deploy to Windows server
         run: |
-           echo ${{secrets.SSH_PRIVATE_KEY}}
-           echo ${{secrets.SERVER_USER}}
-           echo ${{secrets.SERVER_IP}}
+           echo "${{ secrets.SSH_PRIVATE_KEY }}"
+           echo "${{ secrets.SERVER_USER }}"
+           echo "${{ secrets.SERVER_IP }}"
   
