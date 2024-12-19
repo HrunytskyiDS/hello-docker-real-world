@@ -24,12 +24,6 @@ jobs:
             powershell -Command '
               cd "D:\Projects\HelloDockerRealWorld"
               echo "CD ..."
-              git pull origin main
-              echo "GIT PULL"
-              docker-compose down
-              echo "DOWN"
-              docker-compose up -d --build
-              echo "BUILD"
             '
           "
 
