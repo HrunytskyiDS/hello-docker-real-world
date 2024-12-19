@@ -20,11 +20,10 @@ jobs:
 
       - name: Deploy to Windows Server
         run: |
-          ssh -i ssh_key -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-          cd D:/Projects/HelloDockerRealWorld
-          git pull origin main;
-          docker-compose down
-          docker-compose up -d
-          EOF
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} `
+            "cd D:/Projects/HelloDockerRealWorld; `
+            git pull origin main; `
+            docker-compose down; `
+            docker-compose up -d --build"
 
   
